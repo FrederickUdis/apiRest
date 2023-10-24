@@ -8,9 +8,21 @@ import (
 
 	"github.com/beego/beego/v2/client/orm"
 	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
 	_ "github.com/mattn/go-sqlite3"
 )
 
+func CORSMiddleware(ctx *context.Context) {
+	ctx.Output.Header("Access-Control-Allow-Origin", "*")
+	ctx.Output.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	ctx.Output.Header("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
+	if ctx.Input.Method() == "OPTIONS" {
+		ctx.Output.SetStatus(200)
+		ctx.Output.Body([]byte(""))
+		return
+	}
+}
 func init() {
 	// Registra el driver de SQLite3
 	if err := orm.RegisterDriver("sqlite3", orm.DRSqlite); err != nil {
@@ -50,5 +62,6 @@ func main() {
 	} else {
 		log.Println("La base de datos ya tiene registros. No se sincronizará ni se insertarán datos de prueba.")
 	}
+	beego.InsertFilter("*", beego.BeforeRouter, CORSMiddleware)
 	beego.Run()
 }

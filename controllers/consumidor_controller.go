@@ -3,6 +3,7 @@ package controllers
 import (
 	"apiRest/models"
 	"encoding/json"
+	"log"
 
 	"github.com/beego/beego/v2/client/orm"
 	"github.com/beego/beego/v2/server/web"
@@ -55,6 +56,29 @@ func (c *ConsumidorController) Delete() {
 		c.Data["json"] = map[string]int64{"num": num}
 	} else {
 		c.Data["json"] = err.Error()
+	}
+	c.ServeJSON()
+}
+
+func (c *ConsumidorController) GetOne() {
+	id, err := c.GetInt64(":id")
+	if err != nil {
+		log.Printf("Error al obtener el ID del consumidor: %v", err)
+		c.Ctx.Output.SetStatus(400)
+		c.Data["json"] = "ID de consumidor no válido"
+		c.ServeJSON()
+		return
+	}
+
+	o := orm.NewOrm()
+	consumidor := models.Consumidor{ID: id}
+	err = o.Read(&consumidor)
+	if err != nil {
+		log.Printf("Error al obtener el consumidor con ID: %d. Error: %v\n", id, err)
+		c.Ctx.Output.SetStatus(404)
+		c.Data["json"] = "Consumidor no encontrado"
+	} else {
+		c.Data["json"] = consumidor
 	}
 	c.ServeJSON()
 }

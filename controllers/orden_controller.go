@@ -34,6 +34,7 @@ func (c *OrdenController) Get() {
 
 // Post implementa la lógica para crear una nueva orden
 func (c *OrdenController) Post() {
+	log.Printf("Bandera entro en el post")
 	var orden models.Orden
 	err := json.Unmarshal(c.Ctx.Input.RequestBody, &orden)
 	if err != nil {

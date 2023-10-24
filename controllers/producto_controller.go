@@ -78,3 +78,26 @@ func (c *ProductoController) Delete() {
 	}
 	c.ServeJSON()
 }
+
+func (c *ProductoController) GetOne() {
+	id, err := c.GetInt64(":id")
+	if err != nil {
+		log.Printf("Error al obtener el ID del producto: %v", err)
+		c.Ctx.Output.SetStatus(400)
+		c.Data["json"] = "ID de producto no válido"
+		c.ServeJSON()
+		return
+	}
+
+	o := orm.NewOrm()
+	producto := models.Producto{ID: id}
+	err = o.Read(&producto)
+	if err != nil {
+		log.Printf("Error al obtener el producto con ID: %d. Error: %v\n", id, err)
+		c.Ctx.Output.SetStatus(404)
+		c.Data["json"] = "Producto no encontrado"
+	} else {
+		c.Data["json"] = producto
+	}
+	c.ServeJSON()
+}
