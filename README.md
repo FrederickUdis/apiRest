@@ -102,8 +102,27 @@ Un Consumidor puede tener muchas Ordenes pero una Orden pertenece a un único Co
 
 Un Producto puede estar en muchas Ordenes pero una Orden tiene un único Producto. Esto es una relación uno a muchos entre Producto y Orden.
 
+# Servidor
+El proyecto ha sido alojado en el servidor gratuito Railway. Esta plataforma ofrece la ventaja de estar directamente conectada con GitHub, facilitando el despliegue continuo. Además, Railway proporciona un saldo inicial de 5 dólares, lo cual es ideal para desplegar proyectos sencillos que deseemos compartir.
+se Adjuntas imagenes de la configuracion del servidor
+## Ingreso a la platadorma
 
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/f4751674-5371-4d3a-aaf9-10e863ed6405)
 
+## Escoger el poryecto 
+
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/4039e7c8-9e78-4d45-9da3-dcaf3f8c8e83)
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/932e9d8f-6145-4571-a442-4af66ac5a895)
+
+## Proceso de creacion 
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/fb2a469e-b253-4b22-91fd-58ba5baf9988)
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/0b26cdf5-67ca-4110-ad8f-0d302c06e978)
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/3d601cb1-917b-4d68-9e7b-95c1dd511773)
+
+### Errores
+Actualmente enfrentamos un inconveniente: el servidor no ofrece soporte para bases de datos como SQLite, lo que nos impide gestionarla adecuadamente.
+
+![image](https://github.com/FrederickUdis/apiRest/assets/30853509/5cde042e-34b5-4644-94f7-a73b2942e465)
 
 ## Expresiones de Gratitud 🎁
 
